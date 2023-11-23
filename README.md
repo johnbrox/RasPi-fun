@@ -13,4 +13,6 @@ Upgraded pi1, pi2 and pi3 crom bullseye to bookworm.  All good except realised o
 - VLC is 3.0.17.4
 1. Get basic VLC working.<br>
    cmd: unset DISPLAY ; cvlc --no-xlib --aout alsa --alsa-audio-device hw:0,0 /path/to/video.mp4
+2. There is a web interface to control VLC.   Add "-I http --http-password foobar" to cmdline, access http://pi3:8080 <br>
+   Pause, FF, FR, seek work but no subtitle toggle
 
