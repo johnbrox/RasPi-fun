@@ -7,12 +7,16 @@ Issues, thoughts and updates related to my Raspberry Pis
 - pi3 Main box - mpd running for music, omxplayer to play video to TV via HDMI
 
 ### 23 Nov 2023 OMXplayer vs VLC
-Upgraded pi1, pi2 and pi3 crom bullseye to bookworm.  All good except realised omxplayer is deprecated and I should be using an alternative (VLC).
+Upgraded pi1, pi2 and pi3 from bullseye to bookworm.  All good except realised omxplayer is deprecated and I should be using an alternative (VLC).
 - VLC, while it has a command-line version (cvlc), needs to be told to use HDMI for video and also for audio.  No keyboard controls as far as I'm aware so no fast-forward, pause, subtitle-toggle...
-- Downgraded system to buster (using rsync from an backup)
-- VLC is 3.0.17.4
-1. Get basic VLC working.<br>
+- Downgraded system on pi3 to buster (using rsync from an backup)
+- VLC is 3.0.17.4 (from raspbian repositories)
+1. Get basic VLC working...<br>
    cmd: unset DISPLAY ; cvlc --no-xlib --aout alsa --alsa-audio-device hw:0,0 /path/to/video.mp4
-2. There is a web interface to control VLC.   Add "-I http --http-password foobar" to cmdline, access http://pi3:8080 <br>
+   - aout alsa otherwise pulseaudio kicks in
+   - alsa-audio-device hw:0,0 using info from 'aplay -l')
+   - video plays fine (a bit of delay at start, subtitles on by default)
+2. How to disable subltitles from cmdline?
+3. There is a web interface to control VLC.   Add "-I http --http-password foobar" to cmdline, access http://pi3:8080 <br>
    Pause, FF, FR, seek work but no subtitle toggle
 
