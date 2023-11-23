@@ -9,5 +9,8 @@ Issues, thoughts and updates related to my Raspberry Pis
 ### 23 Nov 2023 OMXplayer vs VLC
 Upgraded pi1, pi2 and pi3 crom bullseye to bookworm.  All good except realised omxplayer is deprecated and I should be using an alternative (VLC).
 - VLC, while it has a command-line version (cvlc), needs to be told to use HDMI for video and also for audio.  No keyboard controls as far as I'm aware so no fast-forward, pause, subtitle-toggle...
--  unset DISPLAY ; cvlc --no-xlib --aout alsa --alsa-audio-device hw:0,0 /path/to/video.mp4
+- Downgraded system to buster (using rsync from an backup)
+- VLC is 3.0.17.4
+1. Get basic VLC working.<br>
+   cmd: unset DISPLAY ; cvlc --no-xlib --aout alsa --alsa-audio-device hw:0,0 /path/to/video.mp4
 
