@@ -20,4 +20,15 @@ Upgraded pi1, pi2 and pi3 from bullseye to bookworm.  All good except realised o
 - How to disable subltitles from cmdline?
 - There is a web interface to control VLC.   Add "-I http --http-password foobar" to cmdline, access http://pi3:8080 <br>
    Pause, FF, FR, seek work but no subtitle toggle
+1a. VLC using telnet remote.  This works, if a bit kludgy
+On pi3:
+   startx &
+   cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device hw:0,0 --x11-display=:0 --fullscreen /path/to/video.mp4
+On laptop:
+   telnet pi3 9999
+      > strack -1 # no subs
+      > strack 2 # use subtitles
+      > pause # etc (seek [secs], ...)
+  
+
 2. KODI...
