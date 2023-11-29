@@ -7,9 +7,9 @@ Issues, thoughts and updates related to my Raspberry Pis
 - pi3 Main box - mpd running for music, omxplayer to play video to TV via HDMI
 
 ### 23 Nov 2023 OMXplayer vs other options
-1. VLC
+1. VLC - needs to be run (and controlled) from a remote machine since the Pi has no keyb/mouse connected.
 Upgraded pi1, pi2 and pi3 from bullseye to bookworm.  All good except realised omxplayer is deprecated and I should be using an alternative (VLC).
-- VLC, while it has a command-line version (cvlc), needs to be told to use HDMI for video and also for audio.  No keyboard controls as far as I'm aware so no fast-forward, pause, subtitle-toggle...
+- VLC, while it has a command-line version (cvlc), needs to be told to use HDMI for video and also for audio.  No keyboard controls as far as I'm aware so no 'seek forward/back', pause, subtitle-toggle...
 - Downgraded system on pi3 to buster (using rsync from an backup)
 - VLC is 3.0.17.4 (from raspbian repositories)
 - Get basic VLC working...<br>
