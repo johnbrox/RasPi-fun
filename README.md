@@ -22,9 +22,13 @@ Upgraded pi1, pi2 and pi3 from bullseye to bookworm.  All good except realised o
    Pause, FF, FR, seek work but no subtitle toggle
 
 1a. VLC using telnet remote.  This works, if a bit kludgy<br>
-- On pi3:
+- On pi3 buster:
   - startx &
   - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device hw:0,0 --x11-display=:0 --fullscreen /path/to/video.mp4
+- Pi3 fresh bullseye (arm64) install:
+  - startx & (needs allowed_users=anybody <br>
+needs_root_rights=yes <br> in /etc/X11/Xwrapper.config)
+  - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --fullscreen 
 - On laptop:
    - telnet pi3 9999
    -   \> strack -1 # no subs
