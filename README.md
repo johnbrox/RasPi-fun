@@ -17,22 +17,22 @@ Upgraded pi1, pi2 and pi3 from bullseye to bookworm.  All good except realised o
    - aout alsa otherwise pulseaudio kicks in
    - alsa-audio-device hw:0,0 using info from 'aplay -l')
    - video plays fine (a bit of delay at start, subtitles on by default)
-- How to disable subltitles from cmdline?
-- There is a web interface to control VLC.   Add "-I http --http-password foobar" to cmdline, access http://pi3:8080 <br>
-   Pause, FF, FR, seek work but no subtitle toggle
+- How to disable subltitles from cmdline?<br>
 
-1a. VLC using telnet remote.  This works, if a bit kludgy<br>
-- On pi3 buster:
-  - startx &
+On pi3 fresh bullseye (arm64) install:
+  - \$ startx & (needs allowed_users=anybody <br>
+needs_root_rights=yes <br> in /etc/X11/Xwrapper.config)<br>
+  - \$ export DISPLAY=:0
   - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device hw:0,0 --x11-display=:0 --fullscreen /path/to/video.mp4
-- Pi3 fresh bullseye (arm64) install:
-  - startx & (needs allowed_users=anybody <br>
-needs_root_rights=yes <br> in /etc/X11/Xwrapper.config)
   - don't rely on numeric card id eg hw:0,0 - get identifier for sound card from 'aplay -l', eg<br>
   card 0: **vc4hdmi** [vc4-hdmi], device 0: MAI PCM i2s-hifi-0 [MAI PCM i2s-hifi-0]
   - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --fullscreen
   - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout mmal_xsplitter --fullscreen
-  - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout drm_vout  --fullscreen 
+  - \$ cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout drm_vout  --fullscreen
+  - 1a. VLC remote using HTTP web interface.   <br>
+   Add "-I http --http-password foobar" to cmdline, access http://pi3:8080 <br>
+   Pause, FF, FR, seek work but no subtitle toggle
+1b. VLC using telnet remote.  This works, if a bit kludgy<br>
 - On laptop:
    - telnet pi3 9999
    -   \> strack -1 # no subs
