@@ -28,8 +28,11 @@ Upgraded pi1, pi2 and pi3 from bullseye to bookworm.  All good except realised o
 - Pi3 fresh bullseye (arm64) install:
   - startx & (needs allowed_users=anybody <br>
 needs_root_rights=yes <br> in /etc/X11/Xwrapper.config)
+  - don't rely on numeric card id eg hw:0,0 - get identifier for sound card from 'aplay -l', eg<br>
+  card 0: **vc4hdmi** [vc4-hdmi], device 0: MAI PCM i2s-hifi-0 [MAI PCM i2s-hifi-0]
   - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --fullscreen
-  - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout mmal_xsplitter --fullscreen 
+  - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout mmal_xsplitter --fullscreen
+  - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout drm_vout  --fullscreen 
 - On laptop:
    - telnet pi3 9999
    -   \> strack -1 # no subs
