@@ -30,10 +30,10 @@ needs_root_rights=yes <br> in /etc/X11/Xwrapper.config)<br>
   - cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout mmal_xsplitter --fullscreen
   - \$ cvlc -I telnet --telnet-password=secret --telnet-port=9999 --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout drm_vout  --fullscreen
   - 1a. VLC remote using HTTP web interface.   <br>
-   Add "-I http --http-password foobar" to cmdline, access http://pi3:8080 <br>
+   Add "--extraintf http --http-password foobar" to cmdline, access http://pi3:8080 <br>
    Pause, FF, FR, seek work but no subtitle toggle
    - <b>X not needed!</b>  Forcing video and audio to local hardware (--vout=drm_vout --alsa-audio-device sysdefault:CARD=vc4hdmi) means we can unset DISPLAY (otherwise it gets tunneled back) and even omit --no-xlib :<br>
-unset DISPLAY ; cvlc --quiet --no-plugins-scan --sub-track-id 0 --no-video-title-show --play-and-exit --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout=drm_vout --fullscreen -I cli
+unset DISPLAY ; cvlc --quiet --no-plugins-scan --sub-track-id 0 --no-video-title-show --play-and-exit --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout=drm_vout --fullscreen -I cli --extraintf http --http-password foobar
 
 1b. VLC using telnet remote.  This works, if a bit kludgy<br>
 - On laptop:
