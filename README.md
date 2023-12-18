@@ -4,8 +4,11 @@ Issues, thoughts and updates related to my Raspberry Pis
 ### My Pis
 - pi1 just used for mpd, streaming 6music most of the time
 - pi2 ethernet-attached to router.  Runs the whats-playing bots, also connects to VPN and has pihole running for that.
-- pi3 Main box - mpd running for music, omxplayer to play video to TV via HDMI
-
+- pi3 Main box - hidden behind the TV, and attached to it via HDMI, and USB audio out to HiFi,
+  - Flac available to MPD (https://www.musicpd.org/, set to play to USB ausio),
+  - Mp3 available to GnuMP£d (https://www.gnu.org/software/gnump3d/, deprecated) serverd up via http://pi3:8888.
+  - Video played to TV using VLC (see below).  Omxplayer used to be very handy for this, but it's no longer an option (see https://github.com/popcornmix/omxplayer)
+  
 ### 23 Nov 2023 OMXplayer vs other options
 1. VLC - needs to be run (and controlled) from a remote machine since the Pi has no keyb/mouse connected.
 Upgraded pi1, pi2 and pi3 from bullseye to bookworm.  All good except realised omxplayer is deprecated and I should be using an alternative (VLC).
@@ -34,7 +37,8 @@ needs_root_rights=yes <br> in /etc/X11/Xwrapper.config)<br>
    Pause, FF, FR, seek work but no subtitle toggle <br>
    Add "--extraintf http --http-password foo" to cmdline, to enable access via http://pi3:8080 (default port).  This works on Android too<br>
    - <b>X not needed!</b>  Forcing video and audio to local hardware (--vout=drm_vout --alsa-audio-device sysdefault:CARD=vc4hdmi) means we can unset DISPLAY (otherwise it gets tunneled back) and even omit --no-xlib :<br>
-unset DISPLAY ; cvlc --quiet --no-plugins-scan --sub-track-id 0 --no-video-title-show --play-and-exit --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout=drm_vout --fullscreen -I cli --extraintf http --http-password foo
+   Currently using a wrapper ~/bin/vlcTV:<br>
+<code>unset DISPLAY ; cvlc --quiet --no-plugins-scan --sub-track-id 0 --no-video-title-show --play-and-exit --aout alsa --alsa-audio-device sysdefault:CARD=vc4hdmi --vout=drm_vout --fullscreen -I cli --extraintf http --http-password foo /path/to/file.mp4</code>
 
 1b. VLC using telnet remote.  This works, if a bit kludgy<br>
 - On laptop:
