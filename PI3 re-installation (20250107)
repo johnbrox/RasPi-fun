@@ -1,0 +1,14 @@
+Use rpi-imager to install Raspi Lite 64bit, use custom config (cached from previous)
+Seems fine at first then update/upgrade/reboot shows error in NetworkManager so wlan0 fails to start.
+Retrying with 32bit lite bookworm...
+...update, upgrade ok
+apt install mpd mpc vlc
+sudo dphys-swapfile swapoff
+sudo systemctl disable dphys-swapfile
+cp mpd.conf from backup:
+scp -p 192.168.1.69:/media/Pi2TB/BACKUPS/pi3/root-bookworm/etc/mpd.conf ./
+sudo mv mpd.conf /etc/
+sudo systemctl enable mpd
+sudo systemctl start mpd
+[restore SSH keys]
+restore ~/bin
